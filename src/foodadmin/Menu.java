@@ -43,7 +43,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setText("Sucursales");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, -1));
 
         Clientes.setText("Clientes");
         Clientes.addActionListener(new java.awt.event.ActionListener() {
@@ -51,16 +51,16 @@ public class Menu extends javax.swing.JFrame {
                 ClientesActionPerformed(evt);
             }
         });
-        jPanel1.add(Clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
+        jPanel1.add(Clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
         jButton3.setText("Inventario");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, -1, -1));
 
         jButton4.setText("Proveedores");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, -1, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, -1, -1));
 
         jButton5.setText("Facturar");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, -1, -1));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, -1, -1));
 
         Menu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lenovo\\Documents\\NetBeansProjects\\FoodAdmin\\src\\Imagenes\\menu principal.jpg")); // NOI18N
         jPanel1.add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 440));
@@ -80,7 +80,9 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesActionPerformed
-        // TODO add your handling code here:
+        Clientes p = new Clientes();
+        p.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_ClientesActionPerformed
 
     /**

@@ -2,7 +2,7 @@
 
 create tablespace food
 -- ruta en donde quieren crear la base de datos
-datafile 'C:\Users\Lenovo\Documents\Trabajos_de_la_U\cuatrimestre#5\Lenguajes_de_Base_datos\Proyecto\BD\food.dbf' size 15M
+datafile 'C:\Users\Lenovo\Documents\Trabajos_de_la_U\cuatrimestre#5\Lenguajes_de_Base_datos\Proyecto\BD\food.dbf' size 100M
 default storage (initial 1m next 1m pctincrease 0);
 
 

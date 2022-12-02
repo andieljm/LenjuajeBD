@@ -7,7 +7,7 @@ package Clases_Principales;
 /**
  *
  * @author Lenovo
- */
+ */ 
 public class Provincias {
 
     private String nombre_provincia;

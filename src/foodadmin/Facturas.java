@@ -4,8 +4,8 @@
  */
 package foodadmin;
 
-import Clases_Principales.clientes;
-import ConexionSQL.ClientesDB;
+import Clases_Principales.facturas;
+import ConexionSQL.FacturasDB;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,25 +13,24 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Lenovo
  */
-public class Clientes extends javax.swing.JFrame {
+public class Facturas extends javax.swing.JFrame {
 int cont =1;
-    ArrayList<clientes> cliente;
-    ClientesDB db = new ClientesDB();
+    ArrayList<facturas> facturases;
+    FacturasDB db = new FacturasDB();
 
     /**
-     * Creates new form clientes
+     * Creates new form facturas
      */
-    public Clientes() {
+    public Facturas() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
     
     public void ListarDatos() {
-        cliente = db.ListCliente();
+        facturases = db.ListFacturas();
         DefaultTableModel tb = (DefaultTableModel) tabla.getModel();
-        for (clientes p : cliente) {
-            tb.addRow(new Object[]{cont,p.getNombre(),p.getSnombre(),p.getPa(),p.getSa()
-            ,p.getNi(),p.getFecha(),p.getDi(),p.getTelefono(),p.getCe()});
+        for (facturas f : facturases) {
+            tb.addRow(new Object[]{cont,f.getNombre(),f.getApellido(),f.getProducto(),f.getCantidad(),f.getFecha(),f.getPago()});
             cont ++;
         }
     }
@@ -57,7 +56,6 @@ int cont =1;
         tabla = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        crearC = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -67,11 +65,11 @@ int cont =1;
 
             },
             new String [] {
-                "# Persona", "Nombre", "Segundo Nombre", "Apellido", "Segundo apellido", "Cedula", "Fecha nacimiento", "Direccion", "Telefono", "Correo"
+                "# Factura", "Cliente", "Apellido", "Producto", "cantidad", "Fecha", "Pago"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -94,39 +92,29 @@ int cont =1;
             }
         });
 
-        crearC.setText("Crear cliente");
-        crearC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearCActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1082, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
-                            .addComponent(jButton2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(479, 479, 479)
-                        .addComponent(crearC, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(crearC, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
         );
@@ -140,16 +128,10 @@ int cont =1;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Menu m = new Menu();
+        Mfactura m = new Mfactura();
         m.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void crearCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearCActionPerformed
-        N_cliente nc = new N_cliente();
-        nc.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_crearCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,27 +150,32 @@ int cont =1;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Facturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Facturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Facturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Facturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Clientes().setVisible(true);
+                new Facturas().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton crearC;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;

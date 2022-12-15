@@ -41,6 +41,7 @@ public class ProveedorDB {
                 p.setTelefono(rs.getNString("numero_telefonico"));
                 proveedores.add(p);
             }
+            cnx = null;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Error en Listado");

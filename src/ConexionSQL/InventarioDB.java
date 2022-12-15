@@ -50,6 +50,7 @@ public class InventarioDB {
                 i.setCategoria(rs.getNString("nombre_categoria"));
                 inventarios.add(i);
             }
+            cnx = null;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Error en Listado");

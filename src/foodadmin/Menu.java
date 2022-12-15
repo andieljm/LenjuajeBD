@@ -4,6 +4,8 @@
  */
 package foodadmin;
 
+import ConexionSQL.UsuariosDB;
+
 /**
  *
  * @author Lenovo
@@ -17,6 +19,9 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Menu");
         this.setLocationRelativeTo(null);
+        if(UsuariosDB.r.equalsIgnoreCase("2")){
+             crear_user.setVisible(false);
+        }else{}
     }
 
     /**
@@ -34,6 +39,7 @@ public class Menu extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        crear_user = new javax.swing.JButton();
         Menu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,7 +81,20 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
 
         jButton5.setText("Facturar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, -1, -1));
+
+        crear_user.setText("Crear usuario");
+        crear_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crear_userActionPerformed(evt);
+            }
+        });
+        jPanel1.add(crear_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 120, 30));
 
         Menu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lenovo\\Documents\\NetBeansProjects\\FoodAdmin\\src\\Imagenes\\menu principal.jpg")); // NOI18N
         jPanel1.add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 440));
@@ -118,6 +137,18 @@ public class Menu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        Mfactura f = new Mfactura();
+        f.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void crear_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_userActionPerformed
+        N_usuarios nu = new N_usuarios();
+        nu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_crear_userActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -156,6 +187,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Clientes;
     private javax.swing.JLabel Menu;
+    private javax.swing.JButton crear_user;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

@@ -6,6 +6,7 @@ package foodadmin;
 
 import Clases_Principales.sucursal;
 import ConexionSQL.SucursalDB;
+import ConexionSQL.UsuariosDB;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,7 +15,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Lenovo
  */
 public class Sucursal extends javax.swing.JFrame {
-int cont =1;
+
+    int cont = 1;
     ArrayList<sucursal> sucursal;
     SucursalDB db = new SucursalDB();
 
@@ -24,23 +26,27 @@ int cont =1;
     public Sucursal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        if (UsuariosDB.r.equalsIgnoreCase("2")) {
+            crearsucu.setVisible(false);
+        } else {
+        }
     }
-    
+
     public void ListarDatos() {
         sucursal = db.ListSucursal();
         DefaultTableModel tb = (DefaultTableModel) tabla.getModel();
         for (sucursal p : sucursal) {
-            tb.addRow(new Object[]{cont,p.getNombre(),p.getDir(),p.getDistrito()});
-            cont ++;
+            tb.addRow(new Object[]{cont, p.getNombre(), p.getDir(), p.getDistrito()});
+            cont++;
         }
     }
-    
+
     public void Limpiar() {
         DefaultTableModel tb = (DefaultTableModel) tabla.getModel();
         for (int i = tb.getRowCount() - 1; i >= 0; i--) {
             tb.removeRow(i);
         }
-        cont =1;
+        cont = 1;
     }
 
     /**
@@ -56,6 +62,7 @@ int cont =1;
         tabla = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        crearsucu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -92,6 +99,13 @@ int cont =1;
             }
         });
 
+        crearsucu.setText("Crear sucursal");
+        crearsucu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearsucuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,7 +114,10 @@ int cont =1;
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
-                    .addComponent(jButton1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(253, 253, 253)
+                        .addComponent(crearsucu, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(127, Short.MAX_VALUE))
         );
@@ -109,8 +126,10 @@ int cont =1;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(crearsucu, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(35, 35, 35))
         );
@@ -128,6 +147,12 @@ int cont =1;
         m.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void crearsucuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearsucuActionPerformed
+        N_sucursal s = new N_sucursal();
+        s.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_crearsucuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,6 +193,7 @@ int cont =1;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton crearsucu;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;

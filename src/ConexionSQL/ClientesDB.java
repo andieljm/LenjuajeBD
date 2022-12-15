@@ -19,6 +19,7 @@ public class ClientesDB {
     Statement st = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+    CallableStatement cst = null;
 
     public ArrayList<clientes> ListCliente() {
         ArrayList<clientes> cliente = new ArrayList();
@@ -49,10 +50,35 @@ public class ClientesDB {
                 c.setCe(rs.getNString("correoelectronico"));
                 cliente.add(c);
             }
+            cnx = null;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Error en Listado");
         }
         return cliente;
 }
+     public boolean crearc(String n1 ,String n2,String p1,String p2,String fe,String ced,String dir,String tel,String corre) {
+
+        try {
+            cnx = ConexionDB.getConneccion();
+            cst = cnx.prepareCall("{call bodega.n_cliente(?,?,?,?,?,?,?,?,?)}");
+            cst.setNString(1, n1);
+            cst.setNString(2, n2);
+            cst.setNString(3, p1);
+            cst.setNString(4, p2);
+            cst.setNString(5, fe);
+            cst.setNString(6, ced);
+            cst.setNString(7, dir);
+            cst.setNString(8, tel);
+            cst.setNString(9, corre);
+            cst.execute();
+            cnx = null;
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error de conexion");
+        }
+
+        return false;
+    }
 }

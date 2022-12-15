@@ -40,6 +40,7 @@ public class SucursalDB {
                 c.setDistrito(rs.getNString("nombre_distrito"));
                 sucursal.add(c);
             }
+            cnx = null;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Error en Listado");

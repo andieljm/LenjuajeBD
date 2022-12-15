@@ -24,34 +24,31 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="1082" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="479" max="-2" attributes="0"/>
-                      <Component id="crearC" min="-2" pref="121" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="872" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="78" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="jScrollPane1" min="-2" pref="266" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="301" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
-              <Component id="crearC" min="-2" pref="37" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace pref="46" max="32767" attributes="0"/>
               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -69,17 +66,14 @@
         <Component class="javax.swing.JTable" name="tabla">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="10" rowCount="0">
-                <Column editable="false" title="# Persona" type="java.lang.Object"/>
-                <Column editable="false" title="Nombre" type="java.lang.Object"/>
-                <Column editable="false" title="Segundo Nombre" type="java.lang.Object"/>
+              <Table columnCount="7" rowCount="0">
+                <Column editable="false" title="# Factura" type="java.lang.Object"/>
+                <Column editable="false" title="Cliente" type="java.lang.Object"/>
                 <Column editable="false" title="Apellido" type="java.lang.Object"/>
-                <Column editable="false" title="Segundo apellido" type="java.lang.Object"/>
-                <Column editable="false" title="Cedula" type="java.lang.Object"/>
-                <Column editable="false" title="Fecha nacimiento" type="java.lang.Object"/>
-                <Column editable="false" title="Direccion" type="java.lang.Object"/>
-                <Column editable="false" title="Telefono" type="java.lang.Object"/>
-                <Column editable="false" title="Correo" type="java.lang.Object"/>
+                <Column editable="false" title="Producto" type="java.lang.Object"/>
+                <Column editable="false" title="cantidad" type="java.lang.Object"/>
+                <Column editable="false" title="Fecha" type="java.lang.Object"/>
+                <Column editable="false" title="Pago" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>
@@ -100,14 +94,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="crearC">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Crear cliente"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crearCActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -16,26 +16,22 @@ import java.sql.CallableStatement;
  *
  * @author Lenovo
  */
-public class pruebasconexion {
+public class pruebas2 {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
-        // pruebas utilizando paquetes en java
-
-        String usuario = "oscar", clave = "12";
+    public static void main(String[] args) {
         Connection cnx = null;
-        Statement st = null;
-        ResultSet rs = null;
         CallableStatement cst = null;
-        PreparedStatement pst = null;
-
         try {
             cnx = ConexionDB.getConneccion();
-            st = cnx.createStatement();
-            rs = st.executeQuery("EXECUTE bodega.crearuser('casa','123','2')");
-
+            cst = cnx.prepareCall("{call bodega.crearuser(?,?,?)}");
+            cst.setNString(1, "joan");
+            cst.setNString(2, "333");
+            cst.setNString(3, "2");
+            cst.execute();
+            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Error de conexion");

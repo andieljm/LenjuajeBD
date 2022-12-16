@@ -354,7 +354,7 @@ CREATE OR REPLACE PACKAGE Pack_Facturacion
 IS
     FUNCTION calc_Subtotal(var_cantidad in number, var_precio in number);
     PROCEDURE FoodAdmin.P_DETALLE(param_idproducto in number,param_nombreprod in varchar2, param_cant in number, param_precio in number);
-    FUNCTION calc_Total(total in number, subtotal in number);
+    FUNCTION calc_Total(subtotal in number);
     PROCEDURE FoodAdmin.P_FACTURACION(param_id_cliente in number,param_fecha in number,param_idetalle in number);
 END;
 
@@ -390,12 +390,12 @@ BEGIN
         var_total);
 END;
     
-FUNCTION calc_Total(total in number, subtotal in number)
+FUNCTION calc_Total(subtotal in number)
 RETURN NUMBER
 IS
     VAR_TOTAL NUMBER(10);
 BEGIN
-    VAR_TOTAL=subtotal+total;
+    VAR_TOTAL=subtotal+VAR_TOTAL;
     RETURN VAR_TOTAL;
 END;
 
@@ -404,7 +404,7 @@ PROCEDURE FoodAdmin.P_FACTURACION(
                             param_fecha in number, 
                             param_idetalle in number)
 AS 
-    var_total :=
+    var_total :=calc_Total(SELECT total from detalle_Factura where id_detalle=param_idetalle;)
 BEGIN
   INSERT INTO Factura()
         VALUES ();    

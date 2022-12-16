@@ -4,6 +4,8 @@
  */
 package foodadmin;
 
+import ConexionSQL.SucursalDB;
+
 /**
  *
  * @author Lenovo
@@ -13,9 +15,13 @@ public class N_sucursal extends javax.swing.JFrame {
     /**
      * Creates new form N_sucursal
      */
+    SucursalDB ns = new SucursalDB();
+
     public N_sucursal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        exito.setVisible(false);
+        fallo.setVisible(false);
     }
 
     /**
@@ -28,6 +34,12 @@ public class N_sucursal extends javax.swing.JFrame {
     private void initComponents() {
 
         volver = new javax.swing.JButton();
+        nom = new javax.swing.JTextField();
+        dis = new javax.swing.JTextField();
+        dir = new javax.swing.JTextField();
+        Crearsucursaal = new javax.swing.JButton();
+        exito = new javax.swing.JLabel();
+        fallo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -39,21 +51,62 @@ public class N_sucursal extends javax.swing.JFrame {
             }
         });
 
+        nom.setText("Nombre");
+
+        dis.setText("Codigo de distrito");
+
+        dir.setText("Direccion");
+
+        Crearsucursaal.setText("Crear");
+        Crearsucursaal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearsucursaalActionPerformed(evt);
+            }
+        });
+
+        exito.setText("Creacion Exitosa");
+
+        fallo.setText("Fallo al crear sucursal");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(volver)
-                .addContainerGap(465, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(221, 221, 221)
+                        .addComponent(Crearsucursaal, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(volver)
+                        .addGap(92, 92, 92)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(exito, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dis, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dir, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fallo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(volver)
-                .addContainerGap(342, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(volver)
+                    .addComponent(exito, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(dir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(dis, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(Crearsucursaal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fallo, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -64,6 +117,15 @@ public class N_sucursal extends javax.swing.JFrame {
         s.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_volverActionPerformed
+
+    private void CrearsucursaalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearsucursaalActionPerformed
+        if (ns.crearsucu(nom.getText(), dir.getText(), dis.getText()) == true) {
+            exito.setVisible(true);
+
+        } else {
+            fallo.setVisible(false);
+        }
+    }//GEN-LAST:event_CrearsucursaalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,6 +163,12 @@ public class N_sucursal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Crearsucursaal;
+    private javax.swing.JTextField dir;
+    private javax.swing.JTextField dis;
+    private javax.swing.JLabel exito;
+    private javax.swing.JLabel fallo;
+    private javax.swing.JTextField nom;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }

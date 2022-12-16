@@ -5,6 +5,7 @@
 package ConexionSQL;
 
 import Clases_Principales.inventario;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +23,7 @@ public class InventarioDB {
     Statement st = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+    CallableStatement cst = null;
 
     public ArrayList<inventario> ListInventario1() {
         ArrayList<inventario> inventarios = new ArrayList();
@@ -56,5 +58,66 @@ public class InventarioDB {
             System.out.println("Error en Listado");
         }
         return inventarios;
+    }
+    //crear producto
+    public boolean crearP(String nom ,String fec,String ven,String cant,String precio,String desc,String pro,String cat,String mar) {
+
+        try {
+            cnx = ConexionDB.getConneccion();
+            cst = cnx.prepareCall("{call bodega.registro_producto(?,?,?,?,?,?,?,?,?)}");
+            cst.setNString(1, nom);
+            cst.setNString(2, fec);
+            cst.setNString(3, ven);
+            cst.setNString(4, cant);
+            cst.setNString(5, precio);
+            cst.setNString(6, desc);
+            cst.setNString(7, pro);
+            cst.setNString(8, cat);
+            cst.setNString(9, mar);
+            cst.execute();
+            cnx = null;
+            cst = null;
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error de conexion");
+        }
+
+        return false;
+    }
+    // eliminar producto
+    public boolean eliminarP(String produc) {
+
+        try {
+            cnx = ConexionDB.getConneccion();
+            cst = cnx.prepareCall("{call bodega.eliminaP(?)}");
+            cst.setNString(1, produc);
+            cst.execute();
+            cnx = null;
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error de conexion");
+        }
+
+        return false;
+    }
+    //modificar producto
+    public boolean modiP(String produc,String ncant) {
+
+        try {
+            cnx = ConexionDB.getConneccion();
+            cst = cnx.prepareCall("{call bodega.modip(?,?)}");
+            cst.setNString(1, produc);
+            cst.setNString(2, ncant);
+            cst.execute();
+            cnx = null;
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error de conexion");
+        }
+
+        return false;
     }
 }

@@ -5,6 +5,7 @@
 package ConexionSQL;
 
 import Clases_Principales.sucursal;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,6 +22,7 @@ public class SucursalDB {
     Statement st = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+    CallableStatement cst = null;
 
     public ArrayList<sucursal> ListSucursal() {
         ArrayList<sucursal> sucursal = new ArrayList();
@@ -47,4 +49,24 @@ public class SucursalDB {
         }
         return sucursal;
 }
+    //crear sucursal
+    public boolean crearsucu(String nom, String dir,String dis) {
+
+        try {
+            cnx = ConexionDB.getConneccion();
+            cst = cnx.prepareCall("{call bodega.crearsucur(?,?,?)}");
+            cst.setNString(1, nom);
+            cst.setNString(2, dir);
+            cst.setNString(3, dis);
+            cst.execute();
+            cnx = null;
+            cst = null;
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error de conexion");
+        }
+
+        return false;
+    }
 }

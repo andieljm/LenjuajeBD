@@ -31,7 +31,7 @@ CREATE TABLE canton_cr (
   codigo_canton number(5) NOT NULL constraint pk_codigo_canton primary key,
   codigo_provincia number(5) NOT NULL,
   nombre_canton varchar(45) NOT NULL,
-  constraint fk_codigo_provincia FOREIGN KEY (codigo_provincia) REFERENCES provincia_cr(codigo_provincia));
+  constraint fk_codigo_provincia FOREIGN KEY (codigo_provincia) REFERENCES provincia_cr(codigo_provincia)on delete cascade);
   
 INSERT INTO canton_cr (codigo_canton,codigo_provincia,nombre_canton) VALUES (101,1,'San José');
 INSERT INTO canton_cr (codigo_canton,codigo_provincia,nombre_canton) VALUES (102,1,'Escazú');
@@ -119,7 +119,7 @@ CREATE TABLE distrito_cr(
   codigo_distrito number(10) NOT NULL constraint pk_codigo_distrito primary key,
   codigo_canton number(5) NOT NULL,
   nombre_distrito varchar(45) NOT NULL,
-  constraint fk_codigo_canton FOREIGN KEY (codigo_canton) REFERENCES canton_cr(codigo_canton));
+  constraint fk_codigo_canton FOREIGN KEY (codigo_canton) REFERENCES canton_cr(codigo_canton)on delete cascade);
   
 INSERT INTO distrito_cr (codigo_distrito,codigo_canton,nombre_distrito) VALUES (10101,101,'Carmen');
 INSERT INTO distrito_cr (codigo_distrito,codigo_canton,nombre_distrito) VALUES (10102,101,'Merced');

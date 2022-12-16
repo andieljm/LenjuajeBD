@@ -5,6 +5,7 @@
 package ConexionSQL;
 
 import Clases_Principales.proveedor;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +23,7 @@ public class ProveedorDB {
     Statement st = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+    CallableStatement cst = null;
 
     public ArrayList<proveedor> ListProvedores1() {
         ArrayList<proveedor> proveedores = new ArrayList();
@@ -47,5 +49,24 @@ public class ProveedorDB {
             System.out.println("Error en Listado");
         }
         return proveedores;
+    }
+    public boolean crearPro(String nom ,String corre,String tel) {
+
+        try {
+            cnx = ConexionDB.getConneccion();
+            cst = cnx.prepareCall("{call bodega.nuevo_pro(?,?,?)}");
+            cst.setNString(1, nom);
+            cst.setNString(2, corre);
+            cst.setNString(3, tel);
+            cst.execute();
+            cnx = null;
+            cst = null;
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error de conexion");
+        }
+
+        return false;
     }
 }

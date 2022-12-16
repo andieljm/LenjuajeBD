@@ -59,6 +59,7 @@ public class UsuariosDB {
             cst.setNString(3, "2");
             cst.execute();
             cnx = null;
+            cst = null;
             return true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());

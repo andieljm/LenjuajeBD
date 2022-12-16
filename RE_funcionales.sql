@@ -9,6 +9,20 @@ is
  PROCEDURE n_cliente(nom in varchar2,nom2 in varchar2,ape in VARCHAR2,ape2 in varchar2,fecha in varchar2,
  cedula in VARCHAR2,dirre in varchar2,tel in varchar2,corre in varchar2);
  PROCEDURE crearsucur(nom in varchar2,dir in varchar2,dis in number);
+ PROCEDURE registro_producto(
+                            param_nombre_prod IN varchar2,
+                            param_fecha_produc IN varchar2,
+                            param_fecha_venc IN varchar2,
+                            param_cant IN number,
+                            param_precio_prod IN number,
+                            param_descrip_prod IN varchar2,
+                            param_id_prov IN number,
+                            param_id_cate IN number,
+                            param_id_marca IN number);
+ PROCEDURE nuevo_pro(nom in varchar2,correo in varchar2, cel in varchar2);
+ PROCEDURE eliminaC(ced in varchar2);
+ PROCEDURE eliminaP(nom in varchar2);
+ PROCEDURE modiP(mnom IN varchar2, ncant IN number);
 
 
 END;
@@ -95,8 +109,102 @@ PROCEDURE crearsucur(nom in varchar2,dir in varchar2,dis in number)
     --sucursal 
      insert into sucursal(nombre_sucursal,id_direccion) values (nom,dr);
     end;
+------4
+PROCEDURE registro_producto(
+                            param_nombre_prod IN varchar2,
+                            param_fecha_produc IN varchar2,
+                            param_fecha_venc IN varchar2,
+                            param_cant IN number,
+                            param_precio_prod IN number,
+                            param_descrip_prod IN varchar2,
+                            param_id_prov IN number,
+                            param_id_cate IN number,
+                            param_id_marca IN number)
+AS 
+BEGIN
+  INSERT INTO producto(
+            nombre_producto,
+            fecha_produccion,
+            fecha_vencimiento,
+            cantidad,
+            precio_producto,
+            descripcion_producto,
+            id_proveedor,
+            id_categoria,
+            id_marca)
+        VALUES (param_nombre_prod,
+            param_fecha_produc,
+            param_fecha_venc,
+            param_cant,
+            param_precio_prod,
+            param_descrip_prod,
+            param_id_prov,
+            param_id_cate,
+            param_id_marca);    
+END;
+----5
+PROCEDURE nuevo_pro(nom in varchar2,correo in varchar2, cel in varchar2)
+as
+ cont number(5);
+  dr number(5);
+    cursor  c_corre is select id_correoe
+	  from  correo_electronico;
+      cursor  c_tel is select id_telefono
+	  from  telefono;
+    BEGIN
+    insert into telefono (numero_telefonico,id_tipotelefono) values (cel,1);
+    insert into correo_electronico (correoElectronico,id_tipoCorreoE) values (correo,1);
+     --correo
+    for var_fila1 in c_corre loop 
+        dr := var_fila1.id_correoe;
+	end loop;
+    --tel
+    for var_fila1 in c_tel loop 
+        cont := var_fila1.id_telefono;
+	end loop;
+    insert into proveedor (nombre_empresa,id_correoe,id_telefono,id_direccion) values (nom,dr,cont,9);
+    end;
+---6 -- eliminar
+PROCEDURE eliminaC(ced in varchar2)
+as
+
+begin
+delete from persona where persona.num_identificacion = ced; 
 
 end;
+---7 eliminar producto
+PROCEDURE eliminaP(nom in varchar2)
+as
+
+begin
+delete from producto where nombre_producto = nom; 
+
+end;
+
+--modificar
+----8 modificar cantiadad
+PROCEDURE modiP(mnom IN varchar2, ncant IN number)
+AS 
+BEGIN
+  UPDATE PRODUCTO SET cantidad = ncant
+  WHERE nombre_producto = mnom;
+END;
+
+end;
+-----fin de paquete
+---eliminar
+--- eliminar cliente
+execute bodega.eliminac('12345');
+---eliminar producto
+execute bodega.eliminaP('res');
+---modificar
+--modificar cantidad
+execute bodega.modip('consome_de_pollo',150);
+--crear
+--proveedor
+execute bodega.nuevo_pro('prana','prana@gmail.com','1211-2222');
+---Producto
+execute bodega.registro_producto('harina','2/20/2020','1/21/2022',100,2500,'alimento en polvo',2,1,1);
 ---sucursal
 execute bodega.crearsucur('DR3','bodega verde',10101);
 --usuario

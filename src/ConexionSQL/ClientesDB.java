@@ -73,6 +73,22 @@ public class ClientesDB {
             cst.setNString(9, corre);
             cst.execute();
             cnx = null;
+            cst = null;
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error de conexion");
+        }
+
+        return false;
+    }
+     public boolean eliminarc(String ced) {
+
+        try {
+            cnx = ConexionDB.getConneccion();
+            cst = cnx.prepareCall("{call bodega.eliminac(?)}");
+            cst.setNString(1, ced);
+            cst.execute();
             return true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());

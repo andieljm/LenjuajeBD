@@ -14,7 +14,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Lenovo
  */
 public class Clientes extends javax.swing.JFrame {
-int cont =1;
+
+    int cont = 1;
     ArrayList<clientes> cliente;
     ClientesDB db = new ClientesDB();
 
@@ -24,24 +25,25 @@ int cont =1;
     public Clientes() {
         initComponents();
         this.setLocationRelativeTo(null);
+        exitoe.setVisible(false);
     }
-    
+
     public void ListarDatos() {
         cliente = db.ListCliente();
         DefaultTableModel tb = (DefaultTableModel) tabla.getModel();
         for (clientes p : cliente) {
-            tb.addRow(new Object[]{cont,p.getNombre(),p.getSnombre(),p.getPa(),p.getSa()
-            ,p.getNi(),p.getFecha(),p.getDi(),p.getTelefono(),p.getCe()});
-            cont ++;
+            tb.addRow(new Object[]{cont, p.getNombre(), p.getSnombre(), p.getPa(), p.getSa(),
+                p.getNi(), p.getFecha(), p.getDi(), p.getTelefono(), p.getCe()});
+            cont++;
         }
     }
-    
+
     public void Limpiar() {
         DefaultTableModel tb = (DefaultTableModel) tabla.getModel();
         for (int i = tb.getRowCount() - 1; i >= 0; i--) {
             tb.removeRow(i);
         }
-        cont =1;
+        cont = 1;
     }
 
     /**
@@ -58,6 +60,9 @@ int cont =1;
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         crearC = new javax.swing.JButton();
+        ced = new javax.swing.JTextField();
+        EliminarC = new javax.swing.JButton();
+        exitoe = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -101,31 +106,58 @@ int cont =1;
             }
         });
 
+        ced.setText("Cedula");
+
+        EliminarC.setText("Eliminar");
+        EliminarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarCActionPerformed(evt);
+            }
+        });
+
+        exitoe.setText("Eliminacion exitosa");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1082, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(467, 467, 467)
+                                .addComponent(crearC, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(EliminarC)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(479, 479, 479)
-                        .addComponent(crearC, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(ced, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(exitoe, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ced)
+                        .addComponent(EliminarC))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(crearC, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(crearC, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exitoe, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addComponent(jButton2)
                 .addContainerGap())
@@ -150,6 +182,17 @@ int cont =1;
         nc.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_crearCActionPerformed
+
+    private void EliminarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarCActionPerformed
+        ClientesDB eli = new ClientesDB();
+        if (eli.eliminarc(ced.getText()) == true) {
+            exitoe.setVisible(true);
+            Limpiar();
+            ListarDatos();
+        } else {
+
+        }
+    }//GEN-LAST:event_EliminarCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,7 +231,10 @@ int cont =1;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton EliminarC;
+    private javax.swing.JTextField ced;
     private javax.swing.JButton crearC;
+    private javax.swing.JLabel exitoe;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;

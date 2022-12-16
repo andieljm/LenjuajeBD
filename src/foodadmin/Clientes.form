@@ -27,30 +27,56 @@
           <Component id="jScrollPane1" alignment="0" pref="1082" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="405" max="-2" attributes="0"/>
+                      <Component id="jButton3" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="323" max="-2" attributes="0"/>
+                      <Component id="mcorre" min="-2" pref="97" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="mdir" min="-2" pref="156" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="crearC" min="-2" pref="121" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="260" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Component id="mcedu" min="-2" pref="63" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Component id="mtel" min="-2" pref="97" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="exitomo" min="-2" pref="151" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="467" max="-2" attributes="0"/>
-                              <Component id="crearC" min="-2" pref="121" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="EliminarC" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ced" min="-2" pref="128" max="-2" attributes="0"/>
-                          <Component id="exitoe" min="-2" pref="128" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="EliminarC" min="-2" max="-2" attributes="0"/>
                   </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="ced" min="-2" pref="128" max="-2" attributes="0"/>
+                  <Component id="exitoe" min="-2" pref="128" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -59,23 +85,50 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="mcedu" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="mdir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mcorre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mtel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButton3" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="exitomo" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
               <Component id="jScrollPane1" min="-2" pref="266" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="ced" alignment="3" max="32767" attributes="0"/>
-                      <Component id="EliminarC" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="ced" alignment="3" max="32767" attributes="0"/>
+                              <Component id="EliminarC" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jButton1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
+                      <Component id="exitoe" min="-2" pref="37" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jButton1" max="32767" attributes="0"/>
+                  <Component id="crearC" min="-2" pref="37" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="crearC" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                  <Component id="exitoe" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -148,6 +201,50 @@
     <Component class="javax.swing.JLabel" name="exitoe">
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminacion exitosa"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar cliente "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="mcedu">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cedula"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="mcorre">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nuevo Correo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="mdir">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nueva direccion"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="mtel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nuevo telefono"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="exitomo">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Modificado exitosamente"/>
       </Properties>
     </Component>
   </SubComponents>

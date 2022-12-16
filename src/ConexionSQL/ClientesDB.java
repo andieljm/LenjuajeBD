@@ -97,4 +97,23 @@ public class ClientesDB {
 
         return false;
     }
+     //modificar
+     public boolean modificarc(String ced,String dirm,String cel,String cor) {
+
+        try {
+            cnx = ConexionDB.getConneccion();
+            cst = cnx.prepareCall("{call bodega.m_cliente(?,?,?,?)}");
+            cst.setNString(1, ced);
+            cst.setNString(2, dirm);
+            cst.setNString(3, cel);
+            cst.setNString(4, cor);
+            cst.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error de conexion");
+        }
+
+        return false;
+    }
 }

@@ -5,6 +5,7 @@
 package ConexionSQL;
 
 import Clases_Principales.facturas;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +23,7 @@ public class FacturasDB {
     Statement st = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+    CallableStatement cst = null;
 
     public ArrayList<facturas> ListFacturas() {
         ArrayList<facturas> facturaes = new ArrayList();
@@ -54,5 +56,25 @@ public class FacturasDB {
             System.out.println("Error en Listado");
         }
         return facturaes;
+    }
+    //crear factura
+    public boolean crearfac(String nom, String dir,String dis) {
+
+        try {
+            cnx = ConexionDB.getConneccion();
+            cst = cnx.prepareCall("{call bodega.factura(?,?,?)}");
+            cst.setNString(1, nom);
+            cst.setNString(2, dir);
+            cst.setNString(3, dis);
+            cst.execute();
+            cnx = null;
+            cst = null;
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error de conexion");
+        }
+
+        return false;
     }
 }

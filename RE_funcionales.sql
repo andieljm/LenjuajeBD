@@ -23,7 +23,8 @@ is
  PROCEDURE eliminaC(ced in varchar2);
  PROCEDURE eliminaP(nom in varchar2);
  PROCEDURE modiP(mnom IN varchar2, ncant IN number);
-
+ PROCEDURE M_cliente(cedula in VARCHAR2,dirre in varchar2,tel in varchar2,corre in varchar2);
+ PROCEDURE factura(pro in VARCHAR2,cli in varchar2,cant in number);
 
 END;
 -- paquete cuerpo
@@ -189,15 +190,82 @@ BEGIN
   UPDATE PRODUCTO SET cantidad = ncant
   WHERE nombre_producto = mnom;
 END;
-
+--9 modificar cliente
+PROCEDURE M_cliente(cedula in VARCHAR2,dirre in varchar2,tel in varchar2,corre in varchar2)
+AS
+dir varchar2(40);
+tele varchar2(40);
+cr varchar2(40);
+BEGIN
+--direccion
+  select p.id_direccion into dir from persona p
+  inner join direccion d 
+  on d.id_direccion = p.id_direccion
+  where cedula = p.num_identificacion;
+  UPDATE direccion SET  OTRAS_SENAS = dirre 
+  WHERE ID_DIRECCION = dir;
+  ---telefono
+  select p.ID_TELEFONO into tele from persona p
+  inner join telefono t 
+  on t.ID_TELEFONO = p.ID_TELEFONO
+  where cedula = p.num_identificacion;
+  UPDATE telefono SET  numero_telefonico = tel 
+  WHERE ID_TELEFONO = tele;
+  --correo
+  select p.ID_CORREOE into cr from persona p
+  inner join correo_electronico c
+  on c.ID_CORREOE = p.ID_CORREOE
+  where cedula = p.num_identificacion;
+  UPDATE correo_electronico SET  correoelectronico = corre
+  WHERE ID_CORREOE = cr;
+END;
+--- 10 crear factura
+PROCEDURE factura(pro in VARCHAR2,cli in varchar2,cant in number)
+as
+cont number(5);
+  fi number(5);
+  prot varchar2(30);
+  cliw varchar2(30);
+    cursor  c_fac is select ID_DETALLE
+	  from  detallefactura;
+    BEGIN
+    ---pro
+    select p.ID_PRODUCTO into prot
+    from producto p
+    where pro = p.NOMBRE_PRODUCTO;
+    ---precio pro
+    select p.PRECIO_PRODUCTO into fi
+    from producto p
+    where pro = p.NOMBRE_PRODUCTO;
+    ---cliente
+   select c.ID_CLIENTE into cliw 
+   from persona p
+  inner join cliente c
+  on c.ID_PERSONA = p.ID_PERSONA
+  where cli = p.PRIMER_NOMBRE;
+    ----
+     insert into detallefactura (id_producto,id_cliente,cantidad) values (prot,cliw,cant);
+     --contador
+    for var_fila1 in c_fac loop 
+        cont := var_fila1.ID_DETALLE;
+	end loop;
+    fi := fi * cant;
+    insert into Factura (id_detalle,fecha,pago) values (cont,sysdate,fi);
+   
+end;
+---fin
 end;
 -----fin de paquete
+---crear factura
+execute bodega.factura('consome_de_pollo','pedro',5);
 ---eliminar
 --- eliminar cliente
 execute bodega.eliminac('12345');
 ---eliminar producto
 execute bodega.eliminaP('res');
 ---modificar
+---modificar cliente
+execute bodega.m_cliente('','dir','cel','corre');
 --modificar cantidad
 execute bodega.modip('consome_de_pollo',150);
 --crear
